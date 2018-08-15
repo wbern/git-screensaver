@@ -13,7 +13,11 @@
                 "--dir",
                 "../../Repos",
                 "--dir",
-                "../../Scripts"
+                "../../Scripts",
+                "--limit",
+                "10",
+                "--since",
+                "2 weeks ago"
             ]
         }
     ]

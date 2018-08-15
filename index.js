@@ -17,6 +17,12 @@ args.option(
   'How many directories to recurse down. Set to true to endlessly recurse, or false to not recurse',
   5
 );
+
+args.option(
+  'limit',
+  'How many lines to show from each git log command. Set to 0 for all lines',
+  0
+);
 args.option('dir', 'directories to search');
 args.option('hide-merges', 'Do not show commits starting with [Mm]erge', true);
 args.option(
@@ -29,7 +35,7 @@ args.option(
   'How to display the commit text line',
   '{{relativeTime}}: {{message}}'
 );
-args.option('since', 'How far back to display commits.', '1 month ago');
+args.option('since', 'How far back to display commits.', '');
 args.option('author', 'Author(s) to filter by.', os.userInfo().username);
 args.option('show-all-authors', 'Show all authors', false);
 args.option(
@@ -164,6 +170,10 @@ new Promise(resolve => {
             (commit.message &&
               !commit.message.toLowerCase().startsWith('merge'))
         );
+
+        if(flags.limit > 0 && commits.length > flags.limit) {
+          commits.splice(flags.limit);
+        }
 
         commits.forEach(lineEntry => {
           let time = moment(lineEntry.date, 'YYYY-MM-DD hh:mm:ss a');
