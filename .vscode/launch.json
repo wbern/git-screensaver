@@ -17,7 +17,8 @@
                 "--limit",
                 "10",
                 "--since",
-                "2 weeks ago"
+                "2 weeks ago",
+                "--clear-screen"
             ]
         }
     ]
