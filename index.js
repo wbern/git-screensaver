@@ -1,11 +1,10 @@
 const process = require('process');
 const path = require('path');
-const fs = require('fs');
 const os = require('os');
-const tensify = require('tensify');
 const whimsy = require('whimsy');
 const args = require('args');
 const micromustache = require('micromustache');
+const fg = require('fast-glob');
 
 const moment = require('moment');
 // require('moment/locale/sv');
@@ -13,6 +12,12 @@ const moment = require('moment');
 
 const createGit = require('simple-git/promise');
 
+args.option(
+  'recurse-level-count',
+  'How many directories to recurse down. Set to true to endlessly recurse, or false to not recurse',
+  5
+);
+args.option('dir', 'directories to search');
 args.option('hide-merges', 'Do not show commits starting with [Mm]erge', true);
 args.option(
   'fetch',
@@ -47,19 +52,30 @@ args.option(
 
 const flags = args.parse(process.argv);
 
-function getDirectories(searchPath) {
-  return fs
-    .readdirSync(searchPath)
-    .filter(function(file) {
-      return fs.statSync(searchPath + '/' + file).isDirectory();
-    })
-    .map(directoryName => {
-      return path.resolve(path.join(searchPath, directoryName));
+function findGitDirs(searchPaths) {
+  let dirs = [];
+
+  searchPaths.forEach(searchPath => {
+    const entries = fg.sync(['**/.git/'], {
+      cwd: searchPath,
+      deep: flags.recurseLevelCount,
+      onlyDirectories: true
     });
+    dirs = dirs.concat(
+      entries.map(entry => path.resolve(searchPath, entry, '../'))
+    );
+  });
+
+  return dirs;
 }
 
-function getGitEnabledDirectories(directories) {
-  return directories.filter(dir => fs.existsSync(path.join(dir, '.git')));
+let dirs = [];
+if (!flags.dir) {
+  throw new Error('No directories specified. Did you remember to use --dir?');
+} else if (!Array.isArray(flags.dir)) {
+  dirs = [flags.dir];
+} else {
+  dirs = flags.dir;
 }
 
 let gitLogOptions = {
@@ -74,9 +90,7 @@ if (flags.since) {
   gitLogOptions['--since'] = flags.since;
 }
 
-let promises = getGitEnabledDirectories(
-  getDirectories(path.resolve(path.join(__dirname, '../../Repos')))
-).map(gitDir => {
+let promises = findGitDirs(dirs).map(gitDir => {
   let git = createGit(gitDir);
   git.silent(true);
 
@@ -114,17 +128,6 @@ function log() {
     1;
 
   console.log.apply(this, arguments);
-
-  // if (flags.whimsy) {
-  //   console.log.call(this, whimsy(Array.from(arguments).join(' ')));
-  // } else {
-  //   console.log.call(
-  //     this,
-  //     Array.from(arguments)
-  //       .join(' ')
-  //       .replace(/\s*\{\{\s.+\s\}\}\s*/g, ' ')
-  //   );
-  // }
 }
 
 function scroll(newlineSymbol = '.', padAmount = 7, marginAmount = 0) {
@@ -190,7 +193,6 @@ new Promise(resolve => {
     } else {
       scroll(flags.scrollText, 0, flags.scrollAmount);
     }
-    // log('\x1B[2J')
     resolve();
   });
 });

@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ansi-styles": "^3.2.1",
     "args": "^5.0.0",
-    "find": "^0.2.9",
+    "fast-glob": "^2.2.2",
     "micromustache": "^5.4.0",
     "moment": "^2.22.2",
     "simple-git": "^1.96.0",
