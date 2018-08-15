@@ -12,8 +12,6 @@
             "args": [
                 "--dir",
                 "../../Repos",
-                "--dir",
-                "../../Scripts",
                 "--limit",
                 "10",
                 "--since",
