@@ -37,7 +37,7 @@ args.option(
 );
 args.option('since', 'How far back to display commits.', '');
 args.option('author', 'Author(s) to filter by.', os.userInfo().username);
-args.option('show-all-authors', 'Show all authors', false);
+args.option('all-authors', 'Show all authors', false);
 args.option(
   'clear-screen',
   'Clear screen instead of scrolling down (good when you get slowness)',
@@ -88,7 +88,7 @@ let gitLogOptions = {
   '--all': null
 };
 
-if (flags.author && !flags.showAllAuthors) {
+if (flags.author && !flags.allAuthors) {
   gitLogOptions['--author'] = flags.author;
 }
 
