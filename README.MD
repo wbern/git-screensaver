@@ -1,4 +1,4 @@
-Git output that serves any terminal-looking screensaver in your OS.
+`git log` output for all branches that serves any terminal-looking screensaver in your OS.
 
 Tested with phosphor, part of x-screensaver-data-extras
 
