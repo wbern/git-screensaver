@@ -1,6 +1,6 @@
 {
   "name": "git-screensaver",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A neat git screensaver",
   "main": "index.js",
   "scripts": {
