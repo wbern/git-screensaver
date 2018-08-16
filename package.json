@@ -15,8 +15,7 @@
     "micromustache": "^5.4.0",
     "moment": "^2.22.2",
     "simple-git": "^1.96.0",
-    "tensify": "0.0.4",
-    "whimsy": "^1.0.1"
+    "tensify": "0.0.4"
   },
   "devDependencies": {
     "eslint": "^5.3.0",

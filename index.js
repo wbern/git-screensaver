@@ -1,7 +1,7 @@
 const process = require('process');
 const path = require('path');
 const os = require('os');
-const whimsy = require('whimsy');
+// const whimsy = require('whimsy');
 const args = require('args');
 const micromustache = require('micromustache');
 const fg = require('fast-glob');
