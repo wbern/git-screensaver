@@ -120,7 +120,14 @@ let promises = findGitDirs(dirs).map(gitDir => {
         });
 
     // either fetch first, or do git-log immediately
-    flags.fetch ? git.fetch().then(gitLog) : gitLog();
+    flags.fetch
+      ? git
+          .fetch()
+          .catch(() => {
+            // suppress
+          })
+          .then(gitLog)
+      : gitLog();
   });
 });
 
