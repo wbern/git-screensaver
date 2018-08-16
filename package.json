@@ -1,12 +1,14 @@
 {
   "name": "git-screensaver",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A neat git screensaver",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": { "git-screensaver": "./index.js" },
+  "bin": {
+    "git-screensaver": "./index.js"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
