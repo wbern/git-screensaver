@@ -32,3 +32,6 @@ Run `git-screensaver --help` for a list of all options.
 
 ## How to install x-screensaver on Mac OSX
 http://macappstore.org/xscreensaver/
+
+## How do I use this on Windows?
+No idea. You will need a screensaver that can output text somehow.
