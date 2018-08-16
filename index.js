@@ -173,7 +173,7 @@ new Promise(resolve => {
               !commit.message.toLowerCase().startsWith('merge'))
         );
 
-        if(flags.limit > 0 && commits.length > flags.limit) {
+        if (flags.limit > 0 && commits.length > flags.limit) {
           commits.splice(flags.limit);
         }
 
@@ -186,13 +186,13 @@ new Promise(resolve => {
             });
 
             log(
-              whimsy(
-                micromustache
-                  .render(flags.commitText, combinedEntry)
-                  // restore whimsy brackets
-                  .replace('[[', '{{')
-                  .replace(']]', '}}')
-              )
+              // whimsy(
+              micromustache
+                .render(flags.commitText, combinedEntry)
+                // restore whimsy brackets
+                .replace('[[', '{{')
+                .replace(']]', '}}')
+              // )
             );
           } catch (e) {}
         });
