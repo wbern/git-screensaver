@@ -11,8 +11,8 @@ Tested with phosphor, part of x-screensaver-data-extras
 * Set textbox to `git-screensaver --dir /home/user/path/to/repos`
 
 ## Example usage
-`git-screensaver --limit 10 --clear-screen --dir /home/user/Repos --recurse-level-count 2`
-`git-screensaver --since midnight --commit-text "{{relativeTime}} --- {{message}}" --dir /home/user/Repos --recurse-level-count 2`
+* `git-screensaver --limit 10 --clear-screen --dir /home/user/Repos --recurse-level-count 2`
+* `git-screensaver --since midnight --commit-text "{{relativeTime}} --- {{message}}" --dir /home/user/Repos --recurse-level-count 2`
 
 ## FAQ
 ### Slow screensaver

@@ -6,6 +6,14 @@
   "scripts": {
     "patch-release": "npm version patch && npm publish && git push --follow-tags"
   },
+  "keywords": [
+    "phosphor",
+    "xscreensaver",
+    "git-screensaver",
+    "screensaver",
+    "terminal-screensaver",
+    "screensaver-terminal"
+  ],
   "bin": {
     "git-screensaver": "index.js"
   },
