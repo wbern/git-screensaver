@@ -9,8 +9,8 @@
   "bin": {
     "git-screensaver": "index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "https://github.com/wbern",
+  "license": "MIT",
   "dependencies": {
     "ansi-styles": "^3.2.1",
     "args": "^5.0.0",
